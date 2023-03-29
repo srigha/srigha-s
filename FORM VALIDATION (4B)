@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>FormValidation</title>
+    <script>
+        function valid()
+        {
+            var a = document.form.name.value;
+            if(a=="")
+            {
+                alert("please, Enter your name!!!");
+                document.form.name.focus();
+                return false;
+            }
+            if(!isNaN(a))
+            {
+                alert("please Enter only characters");
+                document.form.name.select();
+                return false;
+            }
+
+            var d = document.form.email.value;
+            if(d == "")
+            {
+                alert("please, Enter your mail id!!!");
+                document.form.email.focus();
+                return false;
+            }
+            var atposition = d.indexOf("@");
+            var dotposition = d.lastIndexOf(".");
+            if(atposition<1 || dotposition<atposition+2 || dotposition+2>=d.length)
+                { 
+                    alert("please enter valid mail address!!!!");
+                return false;                }
+
+            var p = document.form.pass.value;
+            if(p == "")
+            {
+                alert("please, Enter your password!!!");
+                document.form.pass.focus();
+                return false;
+            }
+            var cp = document.form.cpass.value;
+            if(cp == "")
+            {
+                alert("please, Enter your password!!!");
+                document.form.cpass.focus();
+                return false;
+            }
+            if(p != cp)
+            {
+                alert("Password not matched please enter correct one!!!!");
+                document.form.cpass.focus();
+                return false;
+            }
+
+            var m = document.form.phone.value;
+            if(m =="")
+            {
+                alert("please, Enter your moblie number!!!");
+                document.form.phone.focus();
+                return false;
+            }
+            if(m.length<10 || m.length>10)
+                {
+                    alert("please enter only 10 digits!");
+                    document.form.phone.focus();
+                    return false;
+                }
+
+            var rb = document.form.gender;
+            var status =0;
+            for(var i=0;i<rb.length;i++)
+            {
+                if(rb[i].checked==true){
+                    status=1;
+                }
+            }
+            if(status==0)
+            {
+                alert("select gender");
+                return false;
+            }
+
+            var interest = document.form.course;
+            if(interest.selectedIndex==0)
+            {
+                alert("select your course");
+                document.form.course.focus();
+                return false;
+            }
+
+           
+            return true;
+        }
+    </script>
+
+
+    <style>
+        .container
+        {
+            display: grid;
+            grid-template-columns: 1fr;
+            border: 2px solid rgb(218, 44, 44);
+            padding: 20px 20px 20px 20px;
+            justify-content: center;
+        }
+        
+    </style>
+
+
+
+    <title>validate</title>
+</head>
+<body>
+    <div class="container">
+        
+            <h1 style="text-align: center;"><b >validation form</b></h1>
+            <br>
+            <br>
+            <form action="about.html" name="form" onsubmit="return valid()">
+                <h5><b>Name</b></h5>
+                <div class="input-group ">
+                    <span class=" input-group-addon "><i class="glyphicon glyphicon-user "></i></span>
+                    <input type="text " class="form-control " placeholder="Name" name="name">
+                </div><br>
+                <h5><b>E-mail</b></h5>
+                <div class="input-group ">
+                    <span class="input-group-addon "><i class="glyphicon glyphicon-mail">@</i></span>
+                    <input id="email" type="email " class="form-control " name="email" placeholder="E-mail Address">
+                </div> <br>
+                <h5><b>Password</b></h5>
+                <div class="input-group ">
+                    <span class="input-group-addon "><i class="glyphicon glyphicon-phone-password">!</i></span>
+                    <input type="password" name="pass" class="form-control " placeholder="Enter strong password">
+                </div>
+                <br>
+                <h5><b>Confirm Password</b></h5>
+                <div class="input-group ">
+                    <span class="input-group-addon "><i class="glyphicon glyphicon-phone-password">!</i></span>
+                    <input type="password" name="cpass" class="form-control " placeholder="Enter your password">
+                </div>
+                <br>
+                <h5><b>Phone</b></h5>
+                <div class="input-group ">
+                    <span class="input-group-addon "><i class="glyphicon glyphicon-phone-alt"></i></span>
+                    <input type="number" name="phone" class="form-control ">
+                </div>
+                <br><br>
+                <h5><b>Gender</b></h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gender">
+                    <label class="form-check-label">
+              Female
+            </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gender">
+                    <label class="form-check-label">
+              Male
+            </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gender">
+                    <label class="form-check-label">
+              Others
+            </label>
+                </div>
+                <br>
+                <h5><b>Courses</b></h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="course">
+                    <label class="form-check-label">
+              MODERN C++
+            </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="course">
+                    <label class="form-check-label">
+              DISCREATE MATHEMATICS
+            </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="course">
+                    <label class="form-check-label ">
+              PRIVACY IN ONLINE SOCIAL MEDIA
+            </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="course">
+                    <label class="form-check-label">
+              EMOTIONAL INTELLIGENCE
+            </label>
+            <div class="item">
+                <input type="submit" id="sub" name="sub">
+            </div> <br>
+            </form>
+        
+    </div>
+</body>
+
+</html>
+
